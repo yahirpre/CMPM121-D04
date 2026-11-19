@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "setup": "deno run -A scripts/godot.ts setup && deno task setup:stubs",
+    "setup:stubs": "deno run -A scripts/stubs.ts",
+    "art": "uv run --script tools/build_art.py",
+    "art:lts": "uv run --no-project --python 3.11 --with \"bpy==4.5.*\" python tools/build_art.py",
+    "edit": "deno run -A scripts/godot.ts -- --editor --path .",
+    "blender": "deno run -A scripts/blender.ts",
+    "dev": "deno task import && deno run -A scripts/godot.ts -- --path .",
+    "kit": "deno task import && deno run -A scripts/godot.ts -- --path . res://app/kit_viewer.tscn",
+    "import": "deno run -A scripts/godot.ts -- --headless --path . --import",
+    "test": "deno run -A scripts/godot.ts -- --headless --path . --script res://tests/run_tests.gd",
+    "lint": "uvx --from gdtoolkit==4.5.0 gdlint core app tests",
+    "fmt": "uvx --from gdtoolkit==4.5.0 gdformat core app tests",
+    "fmt:check": "uvx --from gdtoolkit==4.5.0 gdformat --check core app tests",
+    "boundary": "deno run --allow-read=core scripts/check-boundary.ts",
+    "build": "deno task import && deno run -A scripts/build.ts",
+    "preview": "deno run -A jsr:@std/http@1/file-server dist",
+    "ci": "deno check scripts && deno task boundary && deno task fmt:check && deno task lint && deno task import && deno task test && deno task build",
+    "doctor": "deno run -A scripts/doctor.ts"
+  }
+}

@@ -1,0 +1,13 @@
+# Keep line endings as LF everywhere. Godot writes LF, so a Windows checkout with
+# git's default line-ending conversion would otherwise show changes that are not there.
+* text=auto eol=lf
+
+# Binary assets: never convert or diff as text.
+*.glb binary
+*.blend binary
+*.png binary
+*.wav binary
+*.ogg binary
+*.avi binary
+*.pck binary
+*.wasm binary

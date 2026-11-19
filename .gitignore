@@ -1,0 +1,12 @@
+.tools/
+.godot/
+dist/
+playtests/scratch/
+# glTF Tools "Import from GLB" output, for inspecting the kit; rebuild with deno task art
+art/*.gltf
+art/*.bin
+.DS_Store
+# deno task art writes this beside the .glb on every run, with different bytes each time;
+# commit a hand-edited copy under another name instead (see tools/build_art.py)
+art/dragon_kit.blend
+*.blend1

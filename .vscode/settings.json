@@ -1,0 +1,21 @@
+{
+  // godot-tools: .tools/godot is a link that deno task setup makes to the pinned Godot.
+  // Headless mode starts a windowless Godot for completion, so no editor needs to be open.
+  "godotTools.editorPath.godot4": ".tools/godot",
+  "godotTools.lsp.headless": true,
+  // CI checks GDScript formatting with gdformat (deno task fmt), not this extension's formatter.
+  "[gdscript]": { "editor.formatOnSave": false },
+
+  // Python: completion for bpy comes from Blender 5.2 stubs that deno task setup installs.
+  // The stubs are for completion: they are not precise enough for type errors, and
+  // the real bpy is a compiled module, so silence "could not be resolved from source".
+  "python.analysis.extraPaths": [".tools/python-stubs"],
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticSeverityOverrides": { "reportMissingModuleSource": "none" },
+
+  // Deno: only the TypeScript in scripts/.
+  "deno.enablePaths": ["scripts"],
+
+  "files.exclude": { ".godot": true, "**/*.uid": true },
+  "search.exclude": { ".tools": true, ".godot": true, "dist": true }
+}

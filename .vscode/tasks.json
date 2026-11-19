@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Play (deno task dev)", "type": "shell", "command": "deno", "args": ["task", "dev"], "problemMatcher": [] },
+    { "label": "Rebuild art (deno task art)", "type": "shell", "command": "deno", "args": ["task", "art"], "problemMatcher": [] },
+    { "label": "Open kit in Blender (deno task blender)", "type": "shell", "command": "deno", "args": ["task", "blender"], "problemMatcher": [] },
+    {
+      "label": "CI check (deno task ci)",
+      "type": "shell",
+      "command": "deno",
+      "args": ["task", "ci"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}
