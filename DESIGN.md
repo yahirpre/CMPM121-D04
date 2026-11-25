@@ -5,8 +5,7 @@ to learn where your project is headed. Replace each _italic prompt_.
 
 ## Target
 
-_One or two sentences: what is this creature, what does it eat, where does it live,
-and what should playing feel like?_
+An eel that eats "fish", lives in the ocean, it will be fast paced and intense.
 
 ## Menu choices
 
@@ -14,8 +13,8 @@ Two items from two different groups (see the D4 guide's "The menu" tab).
 
 | Item | Group | Done when (in your words) |
 | --- | --- | --- |
-| _item_ | _group_ | _what you will be able to show_ |
-| _item_ | _group_ | _what you will be able to show_ |
+| Levels In Text Files | Language | Done when levels can be loaded properly and are playable |
+| Sound As Code | Content | Done when the game audio feels satisfying to play (or at least 3) |
 
 ## Words we use
 
@@ -29,16 +28,23 @@ already here from the starter; keep them accurate as you change things.
 | tick | one step of the rules; the dragon moves one cell | `Session.tick()`, `Dragon.tick()` |
 | tile kind | what a cell is made of, such as `floor` or `wall` | `Board.TILES`, `TILES` in `tools/build_art.py` |
 | piece | one model in the kit: head, straight, turn, tail | `Kit.Piece`, `PIECES` in `tools/build_art.py` |
-| _word_ | _meaning_ | _where_ |
+| Eel | the player character | `dragon.glb` and `dragon.gd` |
+| Fish | Food that player eats to earn points and increase speed | `build_art.py`, `fish.gd` |
+| Levels | Various areas for the player to play in | `core/levels` |
 
 ## Where things live
 
-_Where do the rules live, where does drawing happen, and how does an event get from
-one to the other in your project?_
+Rules live in `core/` (this includes the Fish.gd for our food), events are handled within `session.gd`, drawing will stay in `main.gd` as it was before.
 
 ## Adding a tile kind
 
-_The steps a teammate would follow, naming your actual files._
+New tile idea: fish tiles that hold food for the player.
+
+General process:
+1. Add a file for its class in core folder,
+2. Use `build_art.py` to create its visual
+3. Add to `board.gd` so it can actually be added to the stage data
+4. Include any tick calls in `main.gd`
 
 ## Patterns, and what they bought us
 
