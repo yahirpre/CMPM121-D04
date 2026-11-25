@@ -74,7 +74,7 @@ func _draw_dragon() -> void:
 		segment.rotation.y = placed[i][1] * PI / 2
 
 func _draw_fish() -> void:
-	var fish = new MeshInstance3D()
+	var fish = MeshInstance3D.new()
 	fish.mesh = meshes["fish"]
 	fish.position = _center(session.fish)
 
