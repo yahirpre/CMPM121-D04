@@ -9,6 +9,9 @@ var body: Array[Vector2i] = []  # head first
 var heading := Vector2i.RIGHT
 var _turns: Array[Vector2i] = []  # turns wait here until the next tick (Command)
 
+var moveDelayMax: int = 10
+var moveDelayCurrent: int = 0
+
 
 func _init(grid_size: Vector2i, length := 4) -> void:
 	size = grid_size
@@ -27,11 +30,29 @@ func turn(direction: Vector2i) -> void:
 	_turns.append(direction)
 
 
+func grow(amount: int):
+	moveDelayMax -= amount
+	moveDelayCurrent = 0
+
+
 ## Advance one cell, taking the next queued turn first. Wrapping around the grid is a
 ## placeholder: once Session ends the run at solid tiles, the dragon never reaches an edge.
 func tick() -> void:
-	if not _turns.is_empty():
-		heading = _turns.pop_front()
-	var head := body[0] + heading
-	body.push_front(Vector2i(posmod(head.x, size.x), posmod(head.y, size.y)))
-	body.pop_back()
+	if (is_delayed() == false):
+		if not _turns.is_empty():
+			heading = _turns.pop_front()
+		var head := body[0] + heading
+		body.push_front(Vector2i(posmod(head.x, size.x), posmod(head.y, size.y)))
+		body.pop_back()
+	else:
+		countDelay()
+
+
+func is_delayed():
+	return(moveDelayCurrent >= moveDelayMax)
+
+func countDelay(amount: int = 1):
+	if (is_delayed()):
+		moveDelayCurrent += amount;
+	else:
+		moveDelayCurrent = 0

@@ -23,6 +23,7 @@ func _ready() -> void:
 	meshes = Stage.load_kit()
 	_build_stage()
 	_draw_dragon()
+	_draw_fish()
 
 
 ## Input arrives as events, so even a tap shorter than one frame is never missed.
@@ -72,6 +73,12 @@ func _draw_dragon() -> void:
 		segment.position = _center(cell)
 		segment.rotation.y = placed[i][1] * PI / 2
 
+func _draw_fish() -> void:
+	var fish = new MeshInstance3D()
+	fish.mesh = meshes["fish"]
+	fish.position = _center(session.fish)
+
 
 func _center(cell: Vector2i) -> Vector3:
 	return Vector3(cell.x + 0.5, 0, cell.y + 0.5)
+
