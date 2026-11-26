@@ -55,6 +55,7 @@ func is_fish(position: Vector2i):
 
 func check_eat(cell: Vector2i):
 	if is_fish(cell):
+		print("eat")
 		dragon.grow(1)
 		state.score += 1
 

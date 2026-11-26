@@ -2,7 +2,7 @@
 ## It never decides rules: those live in core/session.gd.
 extends Node3D
 
-const GRID := Vector2i(48, 48)  # your call: bigger grids make the dragon feel finer
+const GRID := Vector2i(24, 24)  # your call: bigger grids make the dragon feel finer
 const TICK_SECONDS := 0.1
 const CAMERA_OFFSET := Vector3(0, 11, 7.5)  # above and behind the head
 const DIRECTIONS := {
@@ -75,7 +75,8 @@ func _draw_dragon() -> void:
 
 
 func _draw_fish() -> void:
-	var fish = MeshInstance3D.new()
+	var fish := MeshInstance3D.new()
+	add_child(fish)
 	fish.mesh = meshes["fish"]
 	fish.position = _center(session.fish)
 
