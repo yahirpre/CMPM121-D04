@@ -73,6 +73,7 @@ func _draw_dragon() -> void:
 		segment.position = _center(cell)
 		segment.rotation.y = placed[i][1] * PI / 2
 
+
 func _draw_fish() -> void:
 	var fish = MeshInstance3D.new()
 	fish.mesh = meshes["fish"]
@@ -81,4 +82,3 @@ func _draw_fish() -> void:
 
 func _center(cell: Vector2i) -> Vector3:
 	return Vector3(cell.x + 0.5, 0, cell.y + 0.5)
-

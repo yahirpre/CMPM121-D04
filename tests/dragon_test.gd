@@ -30,44 +30,48 @@ func test_wraps_at_the_edge() -> void:
 		dragon.tick()
 	assert_eq(dragon.body[0], Vector2i(0, 5))
 
+
 func test_delay_is_actually_counted() -> void:
 	var dragon := Dragon.new(Vector2i(10, 10))
-	dragon.countDelay()
-	assert_eq(dragon.moveDelayCurrent, 1)
+	dragon.count_delay()
+	assert_eq(dragon.move_delay_current, 1)
 
-	dragon.countDelay()
-	assert_eq(dragon.moveDelayCurrent, 2)
+	dragon.count_delay()
+	assert_eq(dragon.move_delay_current, 2)
 
-	dragon.countDelay(dragon.moveDelayMax - dragon.moveDelayCurrent)
-	assert_true(dragon.moveDelayCurrent >= dragon.moveDelayMax)
+	dragon.count_delay(dragon.move_delay_max - dragon.move_delay_current)
+	assert_true(dragon.move_delay_current >= dragon.move_delay_max)
 
-	dragon.countDelay()
-	assert_eq(dragon.moveDelayCurrent, 0)
+	dragon.count_delay()
+	assert_eq(dragon.move_delay_current, 0)
+
 
 func test_delay_affects_movement() -> void:
 	var dragon := Dragon.new(Vector2i(10, 10))
-	dragon.moveDelayMax = 3
+	dragon.move_delay_max = 3
 	for i in 3:
 		dragon.tick()
 		assert_eq(dragon.body[0], Vector2i(10, 10))
-	
+
 	dragon.tick()
 	assert_true(dragon.body[0] != Vector2i(10, 10))
 
+
 func test_speed_up_after_eating() -> void:
 	var dragon := Dragon.new(Vector2i(10, 10))
-	var initDelay = dragon.moveDelayMax
+	var init_delay = dragon.move_delay_max
 	dragon.grow(1)
-	assert_eq(dragon.moveDelayMax, initDelay-1)
+	assert_eq(dragon.move_delay_max, init_delay - 1)
 
 	dragon.grow(2)
-	assert_eq(dragon.moveDelayMax, initDelay-3)
+	assert_eq(dragon.move_delay_max, init_delay - 3)
+
 
 func test_growing_resets_move_delay_progress() -> void:
 	var dragon := Dragon.new(Vector2i(10, 10))
-	dragon.countDelay()
-	dragon.countDelay()
-	assert_eq(dragon.moveDelayCurrent, 2)
+	dragon.count_delay()
+	dragon.count_delay()
+	assert_eq(dragon.move_delay_current, 2)
 
 	dragon.grow(1)
-	assert_eq(dragon.moveDelayCurrent, 0)
+	assert_eq(dragon.move_delay_current, 0)
