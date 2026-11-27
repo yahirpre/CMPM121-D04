@@ -17,12 +17,15 @@ var meshes := {}  # kit piece name -> Mesh, shared by everything that shows it (
 var segments: Array[MeshInstance3D] = []
 var camera := Camera3D.new()
 var _clock := 0.0
+var fish := MeshInstance3D.new()
 
 
 func _ready() -> void:
 	meshes = Stage.load_kit()
 	_build_stage()
 	_draw_dragon()
+
+	add_child(fish)
 	_draw_fish()
 
 
@@ -39,6 +42,7 @@ func _process(delta: float) -> void:
 		_clock -= TICK_SECONDS
 		session.tick()
 		_draw_dragon()
+		_draw_fish()
 	_follow(delta)
 
 
@@ -75,10 +79,9 @@ func _draw_dragon() -> void:
 
 
 func _draw_fish() -> void:
-	var fish := MeshInstance3D.new()
-	add_child(fish)
 	fish.mesh = meshes["fish"]
 	fish.position = _center(session.fish)
+	print(fish.position)
 
 
 func _center(cell: Vector2i) -> Vector3:

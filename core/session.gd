@@ -8,7 +8,7 @@ var board: Board
 var dragon: Dragon
 var fish: Vector2i
 var grid: Vector2i
-var rng_seed: int = 1
+var rng_seed: int = 121
 var rng := RandomNumberGenerator.new()
 
 # result: -1 is loss, result: 1 is win, result: 0 is in-play
@@ -64,4 +64,4 @@ func check_eat(cell: Vector2i):
 
 
 func spawn_fish(grid_size):
-	fish = Vector2i(rng.randi_range(0, grid_size.x), rng.randi_range(0, grid_size.y))
+	fish = Vector2i(rng.randi_range(2, grid_size.x-2), rng.randi_range(2, grid_size.y-2))
